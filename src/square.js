@@ -41,6 +41,7 @@
 // https://nodejs.org/api/modules.html#modules-commonjs-modules
 // const { Polygon } = require('./polygon');
 
+const { Rectangle } = require('./rectangle');
 /**
  * Square class
  * @class Square class extends rectangle
@@ -52,30 +53,39 @@
 
 class Square extends Rectangle {
   /**
-   * @constructor
-   * @param {number} side - the length of a side
-   * must use super() to call the parent class constructor
-   * hint: this constructor gets 1 number as an argument
-   * and calls the parent class constructor with height and width
-   */
+  * @constructor
+  * @param {number} side - the length of a side
+  * must use super() to call the parent class constructor
+  * hint: this constructor gets 1 number as an argument
+  * and calls the parent class constructor with height and width
+  */
 
   /**
    * @constructor
    * @param {number} side - the length of a side of the square
    */
   constructor(side) {
-    // write your code here
+    super(side, side);
+    this.name = 'Square';
+    this.side = typeof side === 'number' && side > 0 ? parseFloat(side) : 0;
   }
 
-  /**
-   * @method getSide - return the side length
-   * @returns {number} the side length
-   */
   getSide() {
-    // write your code here
+    return this.side;
+  }
+
+  perimeter() {
+    return 4 * this.side;
+  }
+
+  area() {
+    return this.side * this.side;
+  }
+
+  isValid() {
+    return typeof this.side === 'number' && this.side > 0;
   }
 }
-
 module.exports = {
   Square,
 };
